@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secretRootPasswd
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - "33306:80"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secretRootPasswd
+      - PMA_HOST=mysql
+    profiles:
+      - debug
+    depends_on:
+      - mysql
+volumes:
+  mysql_data:
