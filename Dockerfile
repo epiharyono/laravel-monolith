@@ -23,8 +23,9 @@ RUN pecl install mcrypt-1.0.4 && \
   docker-php-ext-install fileinfo exif pcntl bcmath gd mysqli pdo_mysql && \
   docker-php-ext-enable mcrypt && \
   a2enmod rewrite
+
 # install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 ENV APP_SOURCE /var/www/php
 
@@ -53,7 +54,6 @@ ENV DB_PORT=3306
 ENV DB_DATABASE=laravel
 ENV DB_USERNAME=laravel
 ENV DB_PASSWORD=laravel
-
 
 # copy source laravel
 COPY . .

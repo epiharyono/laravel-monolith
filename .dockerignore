@@ -17,6 +17,7 @@ yarn-error.log
 .env.backup
 .phpunit.result.cache
 tests/
+composer.lock
 
 ### docker
 docker-compose.override.yml
