@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  MYSQL_DATABASE: mahasiswa_db
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+stringData:
+  MYSQL_ROOT_PASSWORD: passwordRoot
+  MYSQL_USER: mahasiswa
+  MYSQL_PASSWORD: mahasiswa
