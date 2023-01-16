@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: laravel
+  labels:
+    app: laravel
+    tier: monolith
+spec:
+  containers:
+    - name: laravel
+      image: 192.168.88.50:8086/udemy/laravel-monolith-apps:v1
+      ports:
+        - containerPort: 80
+      env:
+        - name: APP_URL
+          value: ""
+      imagePullPolicy: Always
+  restartPolicy: Always
