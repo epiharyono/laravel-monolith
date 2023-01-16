@@ -14,5 +14,12 @@ spec:
       env:
         - name: APP_URL
           value: ""
+      resources:
+        requests:
+          cpu: 100m
+          memory: 500Mi
+        limits:
+          cpu: 1500m
+          memory: 1Gi
       imagePullPolicy: Always
   restartPolicy: Always
