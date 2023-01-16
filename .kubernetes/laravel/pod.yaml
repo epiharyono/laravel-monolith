@@ -6,9 +6,37 @@ metadata:
     app: laravel
     tier: monolith
 spec:
+  initContainers:
+    - name: artisan-migrate
+      image: 192.168.88.50:8086/udemy/laravel-monolith-apps:v2
+      command: [".docker/php-artisan-migrate"]
+      ports:
+        - containerPort: 80
+      env:
+        - name: APP_URL
+          value: ""
+        - name: DB_HOST
+          value: mysql
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_DATABASE
+              name: mysql-config
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_USER
+              name: mysql-secret
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_PASSWORD
+              name: mysql-secret
   containers:
     - name: laravel
-      image: 192.168.88.50:8086/udemy/laravel-monolith-apps:v1
+      image: 192.168.88.50:8086/udemy/laravel-monolith-apps:v2
       ports:
         - containerPort: 80
       env:

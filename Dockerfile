@@ -34,6 +34,8 @@ WORKDIR $APP_SOURCE
 
 COPY .docker/000-default.apache.conf /etc/apache2/sites-enabled/000-default.conf
 COPY .docker/apache2-foreground .docker/apache2-foreground
+COPY .docker/php-artisan-migrate-foreground .docker/php-artisan-migrate
+
 CMD [".docker/apache2-foreground"]
 
 FROM node:$NODE_VERSION as laramix_build
