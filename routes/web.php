@@ -13,10 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\Web\RouteController as WebRoute;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/db', function () {
     return view('mahasiswa');
+});
+
+
+Route::group(['prefix'=>'laravel'], function() {
+    Route::get('/',[WebRoute::class, 'index']);
+    Route::get('/{satu}',[WebRoute::class, 'IndexRouteSatu']);
+    Route::get('/{satu}/{dua}',[WebRoute::class, 'IndexRouteDua']);
+    Route::get('/{satu}/{dua}/{tiga}',[WebRoute::class, 'IndexRouteTiga']);
+
+    Route::post('/',[WebRoute::class, 'index']);
+    Route::post('/{satu}',[WebRoute::class, 'IndexRouteSatu']);
+    Route::post('/{satu}/{dua}',[WebRoute::class, 'IndexRouteDua']);
+    Route::post('/{satu}/{dua}/{tiga}',[WebRoute::class, 'IndexRouteTiga']);
+
 });
